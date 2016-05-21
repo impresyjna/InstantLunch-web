@@ -20,7 +20,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'bcrypt'
 gem 'devise', '~> 3.5'
-gem 'compass-rails'
+gem 'bourbon'
 #Api gems
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
