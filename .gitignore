@@ -31,3 +31,5 @@ tmp/cache/assets/sprockets/v3.0/17/17ubBLAfkO54mc-A02R2ogRUedXvfWmqjsuLK0OEd7c.c
 tmp/cache/assets/sprockets/v3.0/17/17ubBLAfkO54mc-A02R2ogRUedXvfWmqjsuLK0OEd7c.cache
 
 *.cache
+
+*.log
