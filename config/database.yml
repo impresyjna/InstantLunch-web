@@ -52,6 +52,6 @@ test:
 #
 production:
   <<: *default
-  database: instantlunch
+  database: instantlunch_production
   username: instantlunch
   password: <%= ENV['INSTANT-LUNCH_DATABASE_PASSWORD'] %>
