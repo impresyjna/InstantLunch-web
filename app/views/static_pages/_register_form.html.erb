@@ -1,41 +1,70 @@
 <div id="signup">
-    <h1>Zarejestruj się</h1>
+  <h1>Zarejestruj się</h1>
 
-    <form action="/" method="post">
+  <%= form_for(RestaurantOwner.new, url: register_owner_path) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-        <div class="top-row">
-            <div class="field-wrap">
-                <label>
-                    First Name<span class="req">*</span>
-                </label>
-                <input type="text" required autocomplete="off"/>
-            </div>
+      <div class="field-wrap">
+        <label>
+          Login<span class="req">*</span>
+        </label>
+        <%= f.text_field :login %>
+      </div>
 
-            <div class="field-wrap">
-                <label>
-                    Last Name<span class="req">*</span>
-                </label>
-                <input type="text" required autocomplete="off"/>
-            </div>
+      <div class="top-row">
+        <div class="field-wrap">
+          <label>
+            Imię<span class="req">*</span>
+          </label>
+          <%= f.text_field :name %>
         </div>
 
         <div class="field-wrap">
-            <label>
-                Email Address<span class="req">*</span>
-            </label>
-            <input type="email" required autocomplete="off"/>
+          <label>
+            Nazwisko<span class="req">*</span>
+          </label>
+          <%= f.text_field :surname %>
         </div>
+      </div>
 
-        <div class="field-wrap">
-            <label>
-                Set A Password<span class="req">*</span>
-            </label>
-            <input type="password" required autocomplete="off"/>
-        </div>
+      <div class="field-wrap">
+        <label>
+          Email<span class="req">*</span>
+        </label>
+        <%= f.email_field :email %>
+      </div>
 
-        <button type="submit" class="button button-block"/>
-        Get Started</button>
+      <div class="field-wrap">
+        <label>
+          Hasło<span class="req">*</span>
+        </label>
+        <%= f.password_field :password %>
+      </div>
 
-    </form>
+      <div class="field-wrap">
+        <label>
+          Potwierdź hasło<span class="req">*</span>
+        </label>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div class="field-wrap">
+        <label>
+          Telefon
+        </label>
+        <%= f.text_field :telephone %>
+      </div>
+
+      <div class="field-wrap">
+        <label>
+          NIP
+        </label>
+        <%= f.text_field :NIP %>
+      </div>
+
+      <button type="submit" class="button button-block"/>
+      Zarejestruj się</button>
+
+  <% end %>
 
 </div>

@@ -24,6 +24,8 @@ gem 'bourbon'
 #Api gems
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'active_record-acts_as'
+gem 'activerecord'
 
 group :development, :test do
   gem 'byebug'

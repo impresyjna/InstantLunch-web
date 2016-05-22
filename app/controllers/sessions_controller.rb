@@ -6,7 +6,7 @@ class SessionsController < FrontController
     user = user_login.present? && User.find_by(login: user_login)
 
 
-    if user.present? and user.valid_password? user_password
+    if user.present?  and user.valid_password? user_password
       log_in user
       redirect_to dashboard_path
     else
