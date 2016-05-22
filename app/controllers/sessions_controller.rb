@@ -3,7 +3,8 @@ class SessionsController < FrontController
     user_password = params[:session][:password]
     user_login = params[:session][:login]
 
-    user = user_login.present? && User.find_by(email: user_login)
+    user = user_login.present? && User.find_by(login: user_login)
+
 
     if user.present? and user.valid_password? user_password
       log_in user
