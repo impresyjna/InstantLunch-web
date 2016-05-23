@@ -8,8 +8,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<!--  wrapper -->
+<div id="wrapper">
+  <!-- navbar top -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+    <!-- navbar-header -->
+    <%= render 'navbar_header' %>
+    <!-- end navbar-header -->
+    <!-- navbar-top-links -->
+    <%= render 'navbar_top_lins' %>
+    <!-- end navbar-top-links -->
+  </nav>
+  <!-- end navbar top -->
 
-<%= yield %>
+  <!-- navbar side -->
+  <%= render 'navbar_side' %>
+  <!-- end navbar side -->
+  <!--  page-wrapper -->
+  <div id="page-wrapper">
+    <%= yield %>
+  </div>
+  <!-- end page-wrapper -->
+
+</div>
+<!-- end wrapper -->
+
 
 <script src="assets/plugins/jquery-1.10.2.js"></script>
 <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
