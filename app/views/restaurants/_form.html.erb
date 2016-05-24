@@ -3,14 +3,25 @@
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Nazwa" %>
-      <div class="form-inline">
-        <%= f.text_field :street, class: 'form-control', :required => true, :placeholder => "Ulica" %>
-        <%= f.text_field :house_number, class: 'form-control', :required => true, :placeholder => "Numer domu" %>
-        <%= f.text_field :apartment_number, class: 'form-control', :required => true, :placeholder => "Numer lokalu" %>
+      <div class="row">
+        <div class="col-sm-8">
+          <%= f.text_field :street, class: 'form-control', :required => true, :placeholder => "Ulica" %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.text_field :house_number, class: 'form-control', :required => true, :placeholder => "Numer domu" %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.text_field :apartment_number, class: 'form-control', :required => true, :placeholder => "Numer lokalu" %>
+        </div>
       </div>
-      <div class="form-inline">
-        <%= f.text_field :post_code, class: 'form-control', :required => true, :placeholder => "Kod pocztowy" %>
-        <%= f.text_field :city, class: 'form-control', :required => true, :placeholder => "Miasto" %>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.text_field :post_code, class: 'form-control', :required => true, :placeholder => "Kod pocztowy" %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :city, class: 'form-control', :required => true, :placeholder => "Miasto" %>
+        </div>
       </div>
 
       <%= f.submit "Dodaj", :class => "btn btn-danger btn-lg btn-block" %>
