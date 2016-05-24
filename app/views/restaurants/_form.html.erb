@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <%= form_for @restaurant do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Nazwa" %>
+      <div class="form-inline">
+        <%= f.text_field :street, class: 'form-control', :required => true, :placeholder => "Ulica" %>
+        <%= f.text_field :house_number, class: 'form-control', :required => true, :placeholder => "Numer domu" %>
+        <%= f.text_field :apartment_number, class: 'form-control', :required => true, :placeholder => "Numer lokalu" %>
+      </div>
+      <div class="form-inline">
+        <%= f.text_field :post_code, class: 'form-control', :required => true, :placeholder => "Kod pocztowy" %>
+        <%= f.text_field :city, class: 'form-control', :required => true, :placeholder => "Miasto" %>
+      </div>
+
+      <%= f.submit "Dodaj", :class => "btn btn-danger btn-lg btn-block" %>
+
+  <% end %>
+</div>

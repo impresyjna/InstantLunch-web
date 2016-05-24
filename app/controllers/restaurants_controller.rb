@@ -9,10 +9,20 @@ class RestaurantsController < FrontController
   end
 
   def new
+    @restaurant = Restaurant.new
+
   end
 
   def create
-
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @restaurant = @restaurant_owner.restaurants.create(restaurant_params)
+    if @restaurant.save
+      flash[:success] = "Dodano restaurację. Poczekaj, aż zostanie aktywowana"
+      redirect_to restaurants_path
+    else
+      flash[:warning] = "Nie udało się dodać restauracji"
+      render 'new'
+    end
   end
 
   def edit
@@ -24,6 +34,13 @@ class RestaurantsController < FrontController
 
   def destroy
 
+  end
+
+  private
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :street, :house_number,
+                                 :apartment_number, :post_code, :city, :restaurant_owner_id)
   end
 
 end
