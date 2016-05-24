@@ -1,8 +1,5 @@
-class RestaurantsController < ApplicationController
-  before_action :authenticate_user!
-
+class RestaurantsController < FrontController
   def index
-    puts current_user.id
     @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
     @restaurants = @restaurant_owner.restaurants
   end

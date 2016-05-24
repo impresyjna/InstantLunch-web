@@ -1,8 +1,9 @@
-class RestaurantOwnersController < ApplicationController
+class RestaurantOwnersController < FrontController
   def create
     restaurant_owner = RestaurantOwner.new(restaurant_owner_params)
     if restaurant_owner.save
       restaurant_owner.generate_authentication_token!
+      log_in restaurant_owner
       redirect_to dashboard_path
     else
       flash.now[:danger] = 'Niepoprawne dane'
