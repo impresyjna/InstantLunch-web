@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Dish Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dish_categories.each do |dish_category| %>
+      <tr>
+        <td><%= link_to 'Show', dish_category %></td>
+        <td><%= link_to 'Edit', edit_dish_category_path(dish_category) %></td>
+        <td><%= link_to 'Destroy', dish_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dish category', new_dish_category_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524102457) do
+ActiveRecord::Schema.define(version: 20160524133736) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,9 +31,11 @@ ActiveRecord::Schema.define(version: 20160524102457) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "dish_category_id", limit: 4
+    t.integer  "menu_id",          limit: 4
   end
 
   add_index "dishes", ["dish_category_id"], name: "index_dishes_on_dish_category_id", using: :btree
+  add_index "dishes", ["menu_id"], name: "index_dishes_on_menu_id", using: :btree
 
   create_table "favorite_restaurants", force: :cascade do |t|
     t.integer  "customer_id",   limit: 4
@@ -46,13 +48,11 @@ ActiveRecord::Schema.define(version: 20160524102457) do
   add_index "favorite_restaurants", ["restaurant_id"], name: "index_favorite_restaurants_on_restaurant_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
-    t.integer  "dish_id",       limit: 4
     t.integer  "restaurant_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
-  add_index "menus", ["dish_id"], name: "index_menus_on_dish_id", using: :btree
   add_index "menus", ["restaurant_id"], name: "index_menus_on_restaurant_id", using: :btree
 
   create_table "restaurant_owners", force: :cascade do |t|
@@ -70,9 +70,10 @@ ActiveRecord::Schema.define(version: 20160524102457) do
     t.string   "post_code",           limit: 255
     t.string   "city",                limit: 255
     t.boolean  "active",              limit: 1
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.integer  "restaurant_owner_id", limit: 4
+    t.boolean  "open",                limit: 1,   default: true
   end
 
   add_index "restaurants", ["restaurant_owner_id"], name: "index_restaurants_on_restaurant_owner_id", using: :btree
@@ -119,9 +120,9 @@ ActiveRecord::Schema.define(version: 20160524102457) do
   add_index "waiters", ["restaurant_owner_id"], name: "index_waiters_on_restaurant_owner_id", using: :btree
 
   add_foreign_key "dishes", "dish_categories"
+  add_foreign_key "dishes", "menus"
   add_foreign_key "favorite_restaurants", "customers"
   add_foreign_key "favorite_restaurants", "restaurants"
-  add_foreign_key "menus", "dishes"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "restaurants", "restaurant_owners"
   add_foreign_key "waiters", "restaurant_owners"
