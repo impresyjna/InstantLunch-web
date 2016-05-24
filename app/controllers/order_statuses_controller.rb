@@ -1,15 +1,7 @@
 class OrderStatusesController < ApplicationController
-  before_action :set_order_status, only: [:show, :edit, :update, :destroy]
 
-  # GET /order_statuses
-  # GET /order_statuses.json
   def index
-    @order_statuses = OrderStatus.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @order_statuses }
-    end
+    @order_statuses = OrderStatus.where(restaurant_owner_id: current_user.actable_id)
   end
 
   # GET /order_statuses/1

@@ -1,15 +1,8 @@
-class DishCategoriesController < ApplicationController
+class DishCategoriesController < FrontController
   before_action :set_dish_category, only: [:show, :edit, :update, :destroy]
 
-  # GET /dish_categories
-  # GET /dish_categories.json
   def index
-    @dish_categories = DishCategory.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @dish_categories }
-    end
+    @dish_categories = DishCategory.where(restaurant_owner_id: current_user.actable_id)
   end
 
   # GET /dish_categories/1
@@ -21,7 +14,6 @@ class DishCategoriesController < ApplicationController
     end
   end
 
-  # GET /dish_categories/new
   def new
     @dish_category = DishCategory.new
   end
@@ -30,19 +22,15 @@ class DishCategoriesController < ApplicationController
   def edit
   end
 
-  # POST /dish_categories
-  # POST /dish_categories.json
   def create
-    @dish_category = DishCategory.new(dish_category_params)
-
-    respond_to do |format|
-      if @dish_category.save
-        format.html { redirect_to @dish_category, notice: 'Dish category was successfully created.' }
-        format.json { render json: @dish_category, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @dish_category.errors, status: :unprocessable_entity }
-      end
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @dish_category = @restaurant_owner.dish_categories.create(dish_category_params)
+    if @dish_category.save
+      flash[:success] = "Dodano kategorię"
+      redirect_to dish_categories_path
+    else
+      flash[:warning] = "Nie udało się dodać kategorii"
+      render 'new'
     end
   end
 
@@ -71,13 +59,8 @@ class DishCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dish_category
-      @dish_category = DishCategory.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dish_category_params
-      params[:dish_category]
-    end
+  def dish_category_params
+    params.require(:dish_category).permit(:name)
+  end
 end
