@@ -1,7 +1,7 @@
 class RestaurantsController < FrontController
   def index
     @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
-    @restaurants = @restaurant_owner.restaurants
+    @restaurants = @restaurant_owner.restaurants.where(open:true)
   end
 
   def show
@@ -41,14 +41,22 @@ class RestaurantsController < FrontController
   end
 
   def destroy
-
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.open = false
+    if @restaurant.save
+      flash[:success] = "Pomyślnie usunięto"
+      redirect_to restaurants_path
+    else
+      flash[:warning] = "Nie udało się usunąć"
+      redirect_to restaurants_path
+    end
   end
 
   private
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :street, :house_number,
-                                 :apartment_number, :post_code, :city, :restaurant_owner_id)
+                                       :apartment_number, :post_code, :city, :restaurant_owner_id)
   end
 
 end
