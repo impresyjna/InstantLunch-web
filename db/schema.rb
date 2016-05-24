@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522230115) do
+ActiveRecord::Schema.define(version: 20160523224223) do
 
   create_table "restaurant_owners", force: :cascade do |t|
     t.string   "telephone",  limit: 255
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(version: 20160522230115) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "name",                limit: 255
+    t.string   "street",              limit: 255
+    t.string   "house_number",        limit: 255
+    t.integer  "apartment_number",    limit: 4
+    t.string   "post_code",           limit: 255
+    t.string   "city",                limit: 255
+    t.boolean  "active",              limit: 1
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "restaurant_owner_id", limit: 4
+  end
+
+  add_index "restaurants", ["restaurant_owner_id"], name: "index_restaurants_on_restaurant_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -45,4 +60,5 @@ ActiveRecord::Schema.define(version: 20160522230115) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "restaurants", "restaurant_owners"
 end
