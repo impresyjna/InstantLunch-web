@@ -6,12 +6,12 @@
     </a>
     <!-- dropdown user-->
     <ul class="dropdown-menu dropdown-user">
-      <li><a href="#"><i class="fa fa-user fa-fw"></i>Profil użytkownika</a>
+      <li><%= link_to RestaurantOwner.find(current_user.actable_id) do%><i class="fa fa-user fa-fw"></i>Profil użytkownika <% end %>
       </li>
-      <li><a href="#"><i class="fa fa-gear fa-fw"></i>Ustawienia</a>
+      <li><%= link_to edit_restaurant_owner_path(RestaurantOwner.find(current_user.actable_id)) do%><i class="fa fa-gear fa-fw"></i>Edytuj profil <% end %>
       </li>
       <li class="divider"></li>
-      <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Wyloguj się</a>
+      <li><%= link_to logout_path, method: "delete" do%><i class="fa fa-sign-out fa-fw"></i>Wyloguj się <% end %>
       </li>
     </ul>
     <!-- end dropdown-user -->

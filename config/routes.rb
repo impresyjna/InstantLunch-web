@@ -2,6 +2,10 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  get 'restaurant_owners/show'
+
+  get 'restaurant_owners/edit'
+
   namespace :api, defaults: { format: :json }, path: '/api/' do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
 
@@ -20,12 +24,12 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
   get 'dashboard' => 'dashboard#index'
   post 'register_owner' => 'restaurant_owners#create'
 
   resources :users
   resources :restaurants
-  devise_for :users
+  resources :restaurant_owners
 
 end

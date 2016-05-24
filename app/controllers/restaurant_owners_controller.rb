@@ -1,4 +1,8 @@
 class RestaurantOwnersController < FrontController
+  def show
+
+  end
+
   def create
     restaurant_owner = RestaurantOwner.new(restaurant_owner_params)
     if restaurant_owner.save
@@ -9,6 +13,14 @@ class RestaurantOwnersController < FrontController
       flash.now[:danger] = 'Niepoprawne dane'
       redirect_to root_path
     end
+  end
+
+  def edit
+
+  end
+
+  def update
+
   end
 
   private
