@@ -70,6 +70,18 @@
         <%= link_to orders_path do%><i class="fa fa-coffee"></i>Lista zamówień<% end %>
       </li>
       <li>
+        <a href="#"><i class="fa fa-tags"></i>Statusy zamówień<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <%= link_to "Lista statusów dla zamówień", order_statuses_path %>
+          </li>
+          <li>
+            <%= link_to "Dodaj status zamówienia", new_order_status_path %>
+          </li>
+        </ul>
+        <!-- second-level-items -->
+      </li>
+      <li>
         <%= link_to RestaurantOwner.find(current_user.actable_id) do%><i class="fa fa-spoon"></i>Aktualna sytuacja w restauracjach<% end %>
       </li>
     </ul>
