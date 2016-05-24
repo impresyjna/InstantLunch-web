@@ -7,7 +7,7 @@ class CreateRestaurants < ActiveRecord::Migration
       t.integer :apartment_number
       t.string :post_code
       t.string :city
-      t.boolean :active
+      t.boolean :active, default: false
 
       t.timestamps null: false
     end
