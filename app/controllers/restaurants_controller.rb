@@ -5,7 +5,7 @@ class RestaurantsController < FrontController
   end
 
   def show
-
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def new
@@ -27,10 +27,17 @@ class RestaurantsController < FrontController
   end
 
   def edit
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.update_attributes(restaurant_params)
+      flash[:success] = "Dane zaktualizowane"
+      redirect_to restaurants_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
