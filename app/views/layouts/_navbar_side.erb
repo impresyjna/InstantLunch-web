@@ -10,7 +10,7 @@
         <!--end user image section-->
       </li>
       <li class="selected">
-        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Start</a>
+        <%= link_to dashboard_path do%><i class="fa fa-dashboard fa-fw"></i>Start<% end %>
       </li>
       <li>
         <a href="#"><i class="fa fa-cutlery"></i> Restauracje<span class="fa arrow"></span></a>
@@ -28,12 +28,16 @@
         <a href="#"><i class="fa fa-book"></i>Menu restauracji<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li>
-            <%= link_to "Lista moich restauracji", restaurants_path %>
-            <a href="panels-wells.html">Lista menu restauracji</a>
+            <%= link_to "Lista menu restauracji", menus_path %>
           </li>
           <li>
-            <%= link_to "Lista moich restauracji", restaurants_path %>
-            <a href="buttons.html">Dodaj menu</a>
+            <%= link_to "Dodaj menu", new_menu_path %>
+          </li>
+          <li>
+            <%= link_to "Lista kategorii potraw", dish_categories_path %>
+          </li>
+          <li>
+            <%= link_to "Dodaj nową kategorię potraw", new_dish_category_path %>
           </li>
         </ul>
         <!-- second-level-items -->
@@ -42,12 +46,10 @@
         <a href="#"><i class="fa fa-users"></i>Kelnerzy<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li>
-            <%= link_to "Lista moich restauracji", restaurants_path %>
-            <a href="#">Lista kelnerów</a>
+            <%= link_to "Lista kelnerów", waiters_path %>
           </li>
           <li>
-            <%= link_to "Lista moich restauracji", restaurants_path %>
-            <a href="#">Dodaj kelnera</a>
+            <%= link_to "Dodaj kelnera", new_waiter_path %>
           </li>
         </ul>
         <!-- second-level-items -->
@@ -56,21 +58,19 @@
         <a href="#"><i class="fa fa-square"></i>Stoliki<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li>
-            <%= link_to "Lista moich restauracji", restaurants_path %>
-            <a href="#">Lista stolików</a>
+            <%= link_to "Lista stolików", tables_path %>
           </li>
           <li>
-            <%= link_to "Lista moich restauracji", restaurants_path %>
-            <a href="#">Dodaj stolik</a>
+            <%= link_to "Dodaj stolik", new_table_path %>
           </li>
         </ul>
         <!-- second-level-items -->
       </li>
       <li>
-        <a href="forms.html"><i class="fa fa-coffee"></i>Lista zamówień</a>
+        <%= link_to orders_path do%><i class="fa fa-coffee"></i>Lista zamówień<% end %>
       </li>
       <li>
-        <a href="forms.html"><i class="fa fa-spoon"></i>Aktualna sytuacja w restauracjach</a>
+        <%= link_to RestaurantOwner.find(current_user.actable_id) do%><i class="fa fa-spoon"></i>Aktualna sytuacja w restauracjach<% end %>
       </li>
     </ul>
     <!-- end side-menu -->

@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   resources :tables
   resources :waiters
   resources :menus
+  resources :orders
+  resources :order_statuses
 end
