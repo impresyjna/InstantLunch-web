@@ -4,9 +4,16 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 </head>
 <body>
-<h1>Hi <%= @user.name %></h1>
+<h3>Subskrypcja dla restauracji <%= @restaurant.name %></h3>
 <p>
-  Sample mail sent using smtp.
-</p>
+  Szanowny Użytkowniku! </p>
+<p> Aby Twoja restauracja była widoczna w systemie należy przelać kwotę <h4>3500 zł</h4> na numer konta</p>
+<p><b><h4>1111 2222 3333 4444 5555 6666</h4></b></p>
+<p>W tytule przelewu wpisując <b>"Subskrypcja - id:<%= @restaurant.id %> <%= @restaurant.name %>"</b></p>
+<p> Po zaksięgowaniu przez nas płatności restauracja zostanie aktywowana, a Ty, Drogi Użytkowniku zyskasz roczny dostęp
+  do wszystkich opcji naszego systemu dla tego lokalu.</p>
+<p>Z poważaniem</p>
+<p>Zespół InstantLunch</p>
+
 </body>
 </html>

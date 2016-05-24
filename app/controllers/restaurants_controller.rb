@@ -18,7 +18,7 @@ class RestaurantsController < FrontController
     @restaurant = @restaurant_owner.restaurants.create(restaurant_params)
     if @restaurant.save
       flash[:success] = "Dodano restaurację. Poczekaj, aż zostanie aktywowana"
-      RestaurantMailer.restaurant_email(@restaurant_owner).deliver_now
+      RestaurantMailer.restaurant_email(@restaurant_owner, @restaurant).deliver_now
       redirect_to restaurants_path
     else
       flash[:warning] = "Nie udało się dodać restauracji"
