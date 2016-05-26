@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <!-- Page Header -->
+  <div class="col-lg-12">
+    <h1 class="page-header">Edycja <%= @waiter.name %> <%= @waiter.surname %></h1>
+  </div>
+  <!--End Page Header -->
+</div>
 
-<%= link_to 'Edit', edit_waiter_path(@waiter) %> |
-<%= link_to 'Back', waiters_path %>
+<div class="row">
+  <%= render 'form' %>
+</div>

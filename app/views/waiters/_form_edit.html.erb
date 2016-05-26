@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <%= form_for @waiter do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Imię" %>
+      <%= f.text_field :surname, class: 'form-control', :required => true, :placeholder => "Nazwisko" %>
+      <%= f.text_field :login, class: 'form-control', :required => true, :placeholder => "Login" %>
+      <%= f.email_field :email, class: 'form-control', :required => true, :placeholder => "Email" %>
+
+      <%= f.text_field :telephone, class: 'form-control', :required => true, :placeholder => "Numer telefonu" %>
+      <%= f.select :restaurant_id, options_for_select(@restaurants, @waiter.restaurant_id), {:include_blank => "Restauracja"}, {:class => "form-control"} %>
+
+      <%= f.submit "Zapisz", :class => "btn btn-danger btn-lg btn-block" %>
+
+  <% end %>
+</div>
