@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526140124) do
+ActiveRecord::Schema.define(version: 20160526222315) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -28,17 +28,18 @@ ActiveRecord::Schema.define(version: 20160526140124) do
   add_index "dish_categories", ["restaurant_owner_id"], name: "index_dish_categories_on_restaurant_owner_id", using: :btree
 
   create_table "dishes", force: :cascade do |t|
-    t.string   "name",             limit: 255
-    t.float    "price",            limit: 24
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "dish_category_id", limit: 4
-    t.integer  "menu_id",          limit: 4
+    t.string   "name",                limit: 255
+    t.float    "price",               limit: 24
+    t.text     "description",         limit: 65535
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "dish_category_id",    limit: 4
+    t.integer  "restaurant_owner_id", limit: 4
+    t.boolean  "active",              limit: 1,     default: true
   end
 
   add_index "dishes", ["dish_category_id"], name: "index_dishes_on_dish_category_id", using: :btree
-  add_index "dishes", ["menu_id"], name: "index_dishes_on_menu_id", using: :btree
+  add_index "dishes", ["restaurant_owner_id"], name: "index_dishes_on_restaurant_owner_id", using: :btree
 
   create_table "favorite_restaurants", force: :cascade do |t|
     t.integer  "customer_id",   limit: 4
@@ -49,6 +50,16 @@ ActiveRecord::Schema.define(version: 20160526140124) do
 
   add_index "favorite_restaurants", ["customer_id"], name: "index_favorite_restaurants_on_customer_id", using: :btree
   add_index "favorite_restaurants", ["restaurant_id"], name: "index_favorite_restaurants_on_restaurant_id", using: :btree
+
+  create_table "menu_dishes", force: :cascade do |t|
+    t.integer  "dish_id",    limit: 4
+    t.integer  "menu_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "menu_dishes", ["dish_id"], name: "index_menu_dishes_on_dish_id", using: :btree
+  add_index "menu_dishes", ["menu_id"], name: "index_menu_dishes_on_menu_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
     t.integer  "restaurant_id", limit: 4
@@ -149,9 +160,11 @@ ActiveRecord::Schema.define(version: 20160526140124) do
 
   add_foreign_key "dish_categories", "restaurant_owners"
   add_foreign_key "dishes", "dish_categories"
-  add_foreign_key "dishes", "menus"
+  add_foreign_key "dishes", "restaurant_owners"
   add_foreign_key "favorite_restaurants", "customers"
   add_foreign_key "favorite_restaurants", "restaurants"
+  add_foreign_key "menu_dishes", "dishes"
+  add_foreign_key "menu_dishes", "menus"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "order_statuses", "restaurant_owners"
   add_foreign_key "orders", "customers"

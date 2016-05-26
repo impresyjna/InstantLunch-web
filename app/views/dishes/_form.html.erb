@@ -1,0 +1,21 @@
+<div class="col-md-12">
+  <%= form_for @dish do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Nazwa" %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.number_field :price, :class => 'form-control', :step => 0.01, :placeholder => "Cena" %>
+        </div>
+        <div class="col-sm-6">
+          <%= f.select :dish_category_id, options_for_select(@dishes_categories, @dish.dish_category_id), {:include_blank => "Kategoria"}, {:class => "form-control"} %>
+        </div>
+      </div>
+
+      <%= f.text_area :description, :class => 'form-control', :placeholder => "Opis" %>
+
+
+      <%= f.submit "Zapisz", :class => "btn btn-danger btn-lg btn-block" %>
+
+  <% end %>
+</div>
