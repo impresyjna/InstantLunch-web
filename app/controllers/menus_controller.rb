@@ -1,15 +1,8 @@
-class MenusController < ApplicationController
-  before_action :set_menu, only: [:show, :edit, :update, :destroy]
-
-  # GET /menus
-  # GET /menus.json
+class MenusController < FrontController
   def index
-    @menus = Menu.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @menus }
-    end
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @menus = Menu.where(restaurant_id: (@restaurant_owner.restaurants.pluck(:id)))
+    @menus = @menus.order(:restaurant_id)
   end
 
   # GET /menus/1
