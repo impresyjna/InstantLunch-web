@@ -45,6 +45,10 @@ class WaitersController < FrontController
   end
 
   def destroy
+    Waiter.find(params[:id]).destroy
+    flash[:success] = "Usunięto kelnera"
+    redirect_to waiters_path
+
   end
 
   private
