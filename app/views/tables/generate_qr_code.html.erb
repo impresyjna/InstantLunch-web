@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
   <title>InstantLunch</title>
   <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
@@ -8,35 +8,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body style="background: none">
-<table class="qr-code" id="qr-code">
-  <% @qr.modules.each_index do |x| %>
-      <tr>
-        <% @qr.modules.each_index do |y| %>
-            <% if @qr.dark?(x,y) %>
-                <td class="black"/>
-            <% else %>
-                <td class="white"/>
-            <% end %>
-        <% end %>
-      </tr>
-  <% end %>
-</table>
-<br />
-<br />
+<div id="#qr-code">
+  <table class="qr-code" id="qr-table">
+    <% @qr.modules.each_index do |x| %>
+        <tr>
+          <% @qr.modules.each_index do |y| %>
+              <% if @qr.dark?(x, y) %>
+                  <td class="black"><img src="image/black.gif" width="5" height="5"></td>
+              <% else %>
+                  <td class="white"><img src="image/white.png" width="5" height="5"></td>
+              <% end %>
+          <% end %>
+        </tr>
+    <% end %>
+  </table>
+  <br/>
+  <br/>
+</div>
+<input type="button" onclick="$('#qr-table').tableExport({type:'png',escape:'true'});" class="btn btn-danger btn-lg btn-block" id="print_qr" value="Pobierz QR"/>
 
-<input type="button" onclick="printDiv('qr-code')" value="Wydrukuj QR" class="btn btn-danger btn-lg btn-block" id="print_qr"/>
 
-<script>
-  function printDiv(divName) {
-    var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
+<script type="text/javascript" src="tableExport.js"></script>
+<script type="text/javascript" src="jquery.base64.js"></script>
+<script type="text/javascript" src="html2canvas.js"></script>
+<script type="text/javascript" src="jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="jspdf/jspdf.js"></script>
+<script type="text/javascript" src="jspdf/libs/base64.js"></script>
 
-    document.body.innerHTML = printContents;
-
-    window.print();
-
-    document.body.innerHTML = originalContents;
-  }
-</script>
 </body>
 </html>
