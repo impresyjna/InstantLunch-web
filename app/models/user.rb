@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :auth_token, uniqueness: true
-
+  validates :password, presence: true, length: { minimum: 8, message: "Hasło musi zawierać minimum 8 znaków!" }, allow_nil: true
   before_create :generate_authentication_token!
 
   def generate_authentication_token!

@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <%= form_for @restaurant_owner do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Imię" %>
+      <%= f.text_field :surname, class: 'form-control', :required => true, :placeholder => "Nazwisko" %>
+      <%= f.text_field :login, class: 'form-control', :required => true, :placeholder => "Login" %>
+      <%= f.email_field :email, class: 'form-control', :required => true, :placeholder => "Email" %>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.password_field :password, class: 'form-control', :placeholder => "Hasło" %>
+        </div>
+        <div class="col-sm-6">
+          <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => "Potwierdzenie hasła" %>
+        </div>
+      </div>
+
+      <%= f.text_field :telephone, class: 'form-control', :placeholder => "Numer telefonu" %>
+      <%= f.text_field :NIP, class: 'form-control', :placeholder => "NIP" %>
+
+      <%= f.submit "Zapisz", :class => "btn btn-danger btn-lg btn-block" %>
+
+  <% end %>
+</div>

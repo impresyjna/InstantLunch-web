@@ -16,11 +16,17 @@ class RestaurantOwnersController < FrontController
   end
 
   def edit
-
+    @restaurant_owner = RestaurantOwner.find(params[:id])
   end
 
   def update
-
+    @restaurant_owner = RestaurantOwner.find(params[:id])
+    if @restaurant_owner.update_attributes(restaurant_owner_params)
+      flash[:success] = "Dane zaktualizowane"
+      redirect_to dashboard_path
+    else
+      render 'edit'
+    end
   end
 
   private
