@@ -1,2 +1,63 @@
-<h1>RestaurantOwners#show</h1>
-<p>Find me in app/views/restaurant_owners/show.html.erb</p>
+<div class="row">
+  <!-- Page Header -->
+  <div class="col-lg-12">
+    <h1 class="page-header">Profil użytkownika</h1>
+  </div>
+  <!--End Page Header -->
+</div>
+
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <%= form_for(@restaurant_owner) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <tr>
+            <th scope="row"><%= f.label :login, "Login" %></th>
+            <td> <%= @restaurant_owner.login %></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><%= f.label :email, "Email" %></th>
+            <td><%= @restaurant_owner.email %></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><%= f.label :name, "Imię" %></th>
+            <td> <%= @restaurant_owner.name %></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><%= f.label :surname, "Nazwisko" %></th>
+            <td><%= @restaurant_owner.surname %></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><%= f.label :telephone, "Numer telefonu" %></tH>
+            <td><%= @restaurant_owner.telephone %></td>
+          </tr>
+
+          <tr>
+            <th scope="row"><%= f.label :NIP, "NIP" %></th>
+            <td><%= @restaurant_owner.NIP %></td>
+          </tr>
+      <% end %>
+      <tr>
+        <th scope="row">Liczba restauracji w systemie</th>
+        <td><%= @restaurants_count %></td>
+      </tr>
+      <tr>
+        <th scope="row">Liczba zapisanych kelnerów w systemie</th>
+        <td><%= @waiters_count %></td>
+      </tr>
+      <tr>
+        <th scope="row">Liczba dań w systemie</th>
+        <td><%= @restaurants_count %></td>
+      </tr>
+      <tr>
+        <th scope="row">Liczba możliwych kategorii dla dań</th>
+        <td><%= @dish_categories_count%></td>
+      </tr>
+
+    </table>
+  </div>
+</div>

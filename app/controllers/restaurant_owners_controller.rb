@@ -1,6 +1,10 @@
 class RestaurantOwnersController < FrontController
   def show
-
+    @restaurant_owner  = RestaurantOwner.find(current_user.actable_id)
+    @restaurants_count = @restaurant_owner.restaurants.where(open: true).count
+    @waiters_count = @restaurant_owner.waiters.count
+    @dishes_count = @restaurant_owner.dishes.count
+    @dish_categories_count = @restaurant_owner.dish_categories.count
   end
 
   def create

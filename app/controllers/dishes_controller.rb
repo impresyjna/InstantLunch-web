@@ -58,7 +58,6 @@ class DishesController < FrontController
       flash[:warning] = "Nie udało się zmienić"
       redirect_to dishes_path
     end
-
   end
 
   private
