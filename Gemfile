@@ -27,6 +27,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'active_record-acts_as'
 gem 'activerecord'
 gem "font-awesome-rails"
+gem 'rqrcode-with-patches', '~> 0.5.4'
 
 group :development, :test do
   gem 'byebug'

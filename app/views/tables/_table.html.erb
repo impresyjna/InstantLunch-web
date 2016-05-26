@@ -2,7 +2,7 @@
   <td><%= table.number %></td>
   <td><%= table.restaurant.name %></td>
   <td class="table_buttons">
-    <%= link_to "<i class='fa fa-qrcode fa-2x'></i>".html_safe, table %>
+    <%= link_to "<i class='fa fa-qrcode fa-2x'></i>".html_safe, generate_qr_code_path(id: table.id) %>
     <%= link_to "<i class='fa fa-trash fa-2x'></i>".html_safe, table, method: :delete,
                 data: { confirm: "Czy jesteś pewien, że chcesz usunąć stolik?" } %>
   </td>

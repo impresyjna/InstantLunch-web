@@ -1,4 +1,5 @@
 class TablesController < FrontController
+  layout false, only: [:generate_qr_code]
   def index
     @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
     @tables = Table.where(restaurant_id: (@restaurant_owner.restaurants.pluck(:id)))
@@ -24,6 +25,13 @@ class TablesController < FrontController
       flash[:warning] = "Nie udało się dodać stolika"
       render 'new'
     end
+  end
+
+  def generate_qr_code
+    @table = Table.find(params[:id])
+    @qr = RQRCode::QRCode.new( @table.QR_code, size: 4)
+    #flash[:success] = "QR" + params[:id].to_s
+    #edirect_to tables_path
   end
 
   def destroy

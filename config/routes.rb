@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'dashboard' => 'dashboard#index'
   post 'register_owner' => 'restaurant_owners#create'
+  get 'generate_qr_code' => 'tables#generate_qr_code'
 
   resources :users
   resources :restaurants
