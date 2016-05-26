@@ -1,6 +1,6 @@
 <tr>
   <td><%= dish.name %></td>
-  <td><%= dish.price %></td>
+  <td><%= number_to_currency(dish.price, unit: "zł", separator: ",", delimiter: "", format: "%n %u") %></td>
   <td><%= dish.dish_category.name %></td>
   <td>
     <% if dish.active %>
