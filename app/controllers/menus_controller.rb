@@ -5,42 +5,28 @@ class MenusController < FrontController
     @menus = @menus.order(:restaurant_id)
   end
 
-  # GET /menus/1
-  # GET /menus/1.json
-  def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @menu }
-    end
-  end
-
-  # GET /menus/new
   def new
     @menu = Menu.new
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @restaurants = @restaurant_owner.restaurants.where(open:true)
+    @restaurants = @restaurants.pluck(:name, :id)
   end
 
-  # GET /menus/1/edit
-  def edit
-  end
-
-  # POST /menus
-  # POST /menus.json
   def create
     @menu = Menu.new(menu_params)
-
-    respond_to do |format|
-      if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
-        format.json { render json: @menu, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
+    if @menu.save
+      flash[:success] = "Dodano menu"
+      redirect_to menus_path
+    else
+      flash[:warning] = "Nie udało się dodać menu"
+      render 'new'
     end
   end
 
-  # PATCH/PUT /menus/1
-  # PATCH/PUT /menus/1.json
+  def edit
+    @menu = Menu.find(params[:id])
+  end
+
   def update
     respond_to do |format|
       if @menu.update(menu_params)
@@ -53,24 +39,10 @@ class MenusController < FrontController
     end
   end
 
-  # DELETE /menus/1
-  # DELETE /menus/1.json
-  def destroy
-    @menu.destroy
-    respond_to do |format|
-      format.html { redirect_to menus_url }
-      format.json { head :no_content }
-    end
-  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def menu_params
-      params[:menu]
-    end
+  def menu_params
+    params.require(:menu).permit(:restaurant_id)
+  end
 end
