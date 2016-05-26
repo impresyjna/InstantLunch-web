@@ -1,17 +1,10 @@
-<%= form_for(@order_status) do |f| %>
-  <% if @order_status.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order_status.errors.count, "error") %> prohibited this order_status from being saved:</h2>
+<div class="col-md-12">
+  <%= form_for @order_status do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-      <ul>
-      <% @order_status.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+      <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Nazwa" %>
+
+      <%= f.submit "Zapisz", :class => "btn btn-danger btn-lg btn-block" %>
+
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

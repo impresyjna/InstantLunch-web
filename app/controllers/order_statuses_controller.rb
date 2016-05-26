@@ -1,75 +1,49 @@
-class OrderStatusesController < ApplicationController
+class OrderStatusesController < FrontController
 
   def index
     @order_statuses = OrderStatus.where(restaurant_owner_id: current_user.actable_id)
   end
 
-  # GET /order_statuses/1
-  # GET /order_statuses/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @order_status }
-    end
+    @order_status = OrderStatus.find(params[:id])
   end
 
-  # GET /order_statuses/new
   def new
     @order_status = OrderStatus.new
   end
 
-  # GET /order_statuses/1/edit
   def edit
+    @order_status = OrderStatus.find(params[:id])
   end
 
-  # POST /order_statuses
-  # POST /order_statuses.json
   def create
-    @order_status = OrderStatus.new(order_status_params)
-
-    respond_to do |format|
-      if @order_status.save
-        format.html { redirect_to @order_status, notice: 'Order status was successfully created.' }
-        format.json { render json: @order_status, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @order_status.errors, status: :unprocessable_entity }
-      end
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @order_status = @restaurant_owner.order_statuses.create(order_status_params)
+    if @order_status.save
+      flash[:success] = "Dodano status"
+      redirect_to order_statuses_path
+    else
+      flash[:warning] = "Nie udało się dodać statusu"
+      render 'new'
     end
   end
 
-  # PATCH/PUT /order_statuses/1
-  # PATCH/PUT /order_statuses/1.json
   def update
-    respond_to do |format|
-      if @order_status.update(order_status_params)
-        format.html { redirect_to @order_status, notice: 'Order status was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @order_status.errors, status: :unprocessable_entity }
-      end
+    @order_status = OrderStatus.find(params[:id])
+    if @order_status.update_attributes(order_status_params)
+      flash[:success] = "Dane zaktualizowane"
+      redirect_to order_statuses_path
+    else
+      render 'edit'
     end
   end
 
-  # DELETE /order_statuses/1
-  # DELETE /order_statuses/1.json
   def destroy
-    @order_status.destroy
-    respond_to do |format|
-      format.html { redirect_to order_statuses_url }
-      format.json { head :no_content }
-    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_status
-      @order_status = OrderStatus.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_status_params
-      params[:order_status]
-    end
+  def order_status_params
+    params.require(:order_status).permit(:name)
+  end
 end

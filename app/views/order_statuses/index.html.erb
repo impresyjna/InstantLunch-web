@@ -17,12 +17,15 @@
         </tr>
         </thead>
         <tbody>
-        <%= render @dish_categories %>
+        <%= render @order_statuses %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
 <div class="row">
-  <%= link_to "Dodaj nową kategorię", new_dish_category_path, :class => "btn btn-danger btn-lg btn-block" %>
+  <div class="col-md-12">
+    <%= link_to "Dodaj nowy status", new_order_status_path, :class => "btn btn-danger btn-lg btn-block" %>
+  </div>
 </div>
