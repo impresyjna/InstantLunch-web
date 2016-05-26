@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526105948) do
+ActiveRecord::Schema.define(version: 20160526140124) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -102,10 +102,14 @@ ActiveRecord::Schema.define(version: 20160526105948) do
   add_index "restaurants", ["restaurant_owner_id"], name: "index_restaurants_on_restaurant_owner_id", using: :btree
 
   create_table "tables", force: :cascade do |t|
-    t.string   "QR_code",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "QR_code",       limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "restaurant_id", limit: 4
+    t.integer  "number",        limit: 4
   end
+
+  add_index "tables", ["restaurant_id"], name: "index_tables_on_restaurant_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -153,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160526105948) do
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "tables"
   add_foreign_key "restaurants", "restaurant_owners"
+  add_foreign_key "tables", "restaurants"
   add_foreign_key "waiters", "restaurant_owners"
   add_foreign_key "waiters", "restaurants"
 end

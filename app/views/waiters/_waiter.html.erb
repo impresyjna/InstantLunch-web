@@ -5,7 +5,7 @@
   <td><%= waiter.email %></td>
   <td><%= waiter.telephone %></td>
   <td><%= waiter.created_at.strftime("%F") %></td>
-  <td>
+  <td class="table_buttons">
     <%= link_to "<i class='fa fa-eye fa-2x'></i>".html_safe, waiter %>
     <%= link_to "<i class='fa fa-pencil fa-2x'></i>".html_safe, edit_waiter_path(waiter) %>
     <%= link_to "<i class='fa fa-trash fa-2x'></i>".html_safe, waiter, method: :delete,
