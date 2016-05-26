@@ -5,7 +5,7 @@ class WaitersController < FrontController
   end
 
   def show
-    @waiters = Waiter.find(params[:id])
+    @waiter = Waiter.find(params[:id])
   end
 
   def new
