@@ -4,13 +4,13 @@ class Api::V1::SessionsController < ApplicationController
     user_password = params[:session][:password]
     user_login = params[:session][:login]
 
-    user = user_login.present? && User.find_by(email: user_login)
+    user = user_login.present? && Customer.find_by(login: user_login)
 
-    if user.present? and user.valid_password? user_password
+    if user.present? and user.valid_password? user_password and user.actable_type == "Customer"
       sign_in user, store: false
       user.generate_authentication_token!
       user.save
-      render json: user, status: 200, location: [:api, user]
+      render json: user, status: 200
     else
       render json: { errors: {credentials: ["Invalid email or password"] }}, status: 422
     end
