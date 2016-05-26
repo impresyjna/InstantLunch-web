@@ -29,6 +29,7 @@ limitations under the License.*/
 i {
   margin-right: 2px;
 }
+
 .fa {
   display: inline-block;
   font-family: FontAwesome;
@@ -2159,7 +2160,7 @@ Author: http://binarytheme.com
 }
 
 .navbar-top-links .open > a, .nav .open > a:hover, .nav .open > a:focus {
-  background-color:  #FF3F59;
+  background-color: #FF3F59;
 }
 
 .navbar-top-links > li > a {
@@ -2341,6 +2342,7 @@ table.qr-code {
   margin-left: 20px;
   margin-top: 20px;
 }
+
 table.qr-code td {
   border-width: 0;
   border-style: none;
@@ -2348,11 +2350,18 @@ table.qr-code td {
   border-collapse: collapse;
   padding: 0;
   margin: 0;
-  width: 15px;
-  height: 15px;
+  width: 5px;
+  height:  5px;
+  font-size: 0px;
 }
-table.qr-code td.black { background-color: #000; }
-table.qr-code td.white { background-color: #fff; }
+
+table.qr-code td.black {
+  background-color: #000;
+}
+
+table.qr-code td.white {
+  background-color: #fff;
+}
 
 #print_qr {
   margin-right: 30px;
@@ -2361,7 +2370,6 @@ table.qr-code td.white { background-color: #fff; }
 }
 
 @media print {
-
   table.qr-code {
     border-width: 0;
     border-style: none;
@@ -2370,6 +2378,7 @@ table.qr-code td.white { background-color: #fff; }
     margin-left: 20px;
     margin-top: 20px;
   }
+
   table.qr-code td {
     border-width: 0;
     border-style: none;
@@ -2377,11 +2386,17 @@ table.qr-code td.white { background-color: #fff; }
     border-collapse: collapse;
     padding: 0;
     margin: 0;
-    width: 15px;
-    height: 15px;
+    width: 5px;
+    height:  5px;
+    font-size: 0px;
   }
 
-  table.qr-code td.black { background-color: #000; }
-  table.qr-code td.white { background-color: #fff; }
+  table.qr-code td.black {
+    background-color: #000;
+  }
+
+  table.qr-code td.white {
+    background-color: #fff;
+  }
 }
 
