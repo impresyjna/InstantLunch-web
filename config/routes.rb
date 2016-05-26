@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       #users
       resources :users, :only => [:show, :create, :update, :destroy,:index]
 
+      #restaurants
+      resources :restaurants, :only => [:index]
       #sessions
       delete '/sessions/logout', to: 'sessions#destroy'
       post '/sessions/login', to: 'sessions#create'
