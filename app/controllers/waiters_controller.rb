@@ -1,80 +1,56 @@
-class WaitersController < ApplicationController
-  before_action :set_waiter, only: [:show, :edit, :update, :destroy]
+class WaitersController < FrontController
 
-  # GET /waiters
-  # GET /waiters.json
   def index
-    @waiters = Waiter.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @waiters }
-    end
-  end
-
-  # GET /waiters/1
-  # GET /waiters/1.json
-  def show
     @waiters = Waiter.where(restaurant_owner_id: current_user.actable_id)
   end
 
-  # GET /waiters/new
+  def show
+    @waiters = Waiter.find(params[:id])
+  end
+
   def new
     @waiter = Waiter.new
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @restaurants = @restaurant_owner.restaurants.where(open:true)
+    @restaurants = @restaurants.pluck(:name, :id)
   end
 
-  # GET /waiters/1/edit
   def edit
+    @waiter = Waiter.find(params[:id])
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @restaurants = @restaurant_owner.restaurants.where(open:true)
+    @restaurants = @restaurants.pluck(:name, :id)
   end
 
-  # POST /waiters
-  # POST /waiters.json
   def create
-    @waiter = Waiter.new(waiter_params)
-
-    respond_to do |format|
-      if @waiter.save
-        format.html { redirect_to @waiter, notice: 'Waiter was successfully created.' }
-        format.json { render json: @waiter, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @waiter.errors, status: :unprocessable_entity }
-      end
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @waiter = @restaurant_owner.waiters.create(waiter_params)
+    if @waiter.save
+      flash[:success] = "Dodano kelnera"
+      redirect_to waiters_path
+    else
+      flash[:warning] = "Nie udało się dodać kelnera"
+      render 'new'
     end
   end
 
-  # PATCH/PUT /waiters/1
-  # PATCH/PUT /waiters/1.json
   def update
-    respond_to do |format|
-      if @waiter.update(waiter_params)
-        format.html { redirect_to @waiter, notice: 'Waiter was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @waiter.errors, status: :unprocessable_entity }
-      end
+    @waiter = Waiter.find(params[:id])
+    if @waiter.update_attributes(waiter_params)
+      flash[:success] = "Dane zaktualizowane"
+      redirect_to waiters_path
+    else
+      render 'edit'
     end
   end
 
-  # DELETE /waiters/1
-  # DELETE /waiters/1.json
   def destroy
-    @waiter.destroy
-    respond_to do |format|
-      format.html { redirect_to waiters_url }
-      format.json { head :no_content }
-    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_waiter
-      @waiter = Waiter.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def waiter_params
-      params[:waiter]
-    end
+  def waiter_params
+    params.require(:waiter).permit(:name, :login, :email, :surname, :password, :password_confirmation, :telephone, :restaurant_id)
+  end
+
 end

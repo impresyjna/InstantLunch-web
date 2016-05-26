@@ -3,4 +3,5 @@ class RestaurantOwner < ActiveRecord::Base
   has_many :restaurants
   has_many :dish_categories
   has_many :order_statuses
+  has_many :waiters
 end

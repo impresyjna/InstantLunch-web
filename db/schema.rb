@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524221923) do
+ActiveRecord::Schema.define(version: 20160526105948) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -134,9 +134,10 @@ ActiveRecord::Schema.define(version: 20160524221923) do
 
   create_table "waiters", force: :cascade do |t|
     t.integer  "restaurant_owner_id", limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "restaurant_id",       limit: 4
+    t.string   "telephone",           limit: 255
   end
 
   add_index "waiters", ["restaurant_id"], name: "index_waiters_on_restaurant_id", using: :btree
