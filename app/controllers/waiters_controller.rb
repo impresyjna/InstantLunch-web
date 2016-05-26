@@ -15,10 +15,7 @@ class WaitersController < ApplicationController
   # GET /waiters/1
   # GET /waiters/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @waiter }
-    end
+    @waiters = Waiter.where(restaurant_owner_id: current_user.actable_id)
   end
 
   # GET /waiters/new
