@@ -45,11 +45,20 @@ class DishesController < FrontController
   end
 
   def destroy
-    @dish.destroy
-    respond_to do |format|
-      format.html { redirect_to dishes_url }
-      format.json { head :no_content }
+    @dish = Dish.find(params[:id])
+    if @dish.active
+      @dish.active = false
+    else
+      @dish.active = true
     end
+    if @dish.save
+      flash[:success] = "Pomyślnie zmieniono"
+      redirect_to dishes_path
+    else
+      flash[:warning] = "Nie udało się zmienić"
+      redirect_to dishes_path
+    end
+
   end
 
   private
