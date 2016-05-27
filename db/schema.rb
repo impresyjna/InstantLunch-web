@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527201808) do
+ActiveRecord::Schema.define(version: 20160527220942) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -83,9 +83,10 @@ ActiveRecord::Schema.define(version: 20160527201808) do
 
   create_table "order_statuses", force: :cascade do |t|
     t.string   "name",                limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.integer  "restaurant_owner_id", limit: 4
+    t.boolean  "visible",             limit: 1,   default: true
   end
 
   add_index "order_statuses", ["restaurant_owner_id"], name: "index_order_statuses_on_restaurant_owner_id", using: :btree

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post 'register_owner' => 'restaurant_owners#create'
   get 'generate_qr_code' => 'tables#generate_qr_code'
   post 'add_dish_to_menu' => 'menus#add_dish'
+  get 'index_of_actual_situation' => 'tables#index_of_actual_situation'
+  get 'actual_situation' => 'tables#actual_situation'
 
   resources :users
   resources :restaurants

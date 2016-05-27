@@ -34,6 +34,15 @@ class TablesController < FrontController
     #edirect_to tables_path
   end
 
+  def index_of_actual_situation
+    @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
+    @restaurants = @restaurant_owner.restaurants.where(open:true)
+  end
+
+  def actual_situation
+
+  end
+
   def destroy
     Table.find(params[:id]).destroy
     flash[:success] = "Usunięto stolik"

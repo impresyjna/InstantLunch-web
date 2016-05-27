@@ -1,0 +1,11 @@
+<tr>
+  <td><%= restaurant.name %></td>
+  <td><%= restaurant.street %></td>
+  <td><%= restaurant.house_number %></td>
+  <td><%= restaurant.apartment_number %></td>
+  <td><%= restaurant.post_code %></td>
+  <td><%= restaurant.city %></td>
+  <td>
+    <%= link_to "<i class='fa fa-eye fa-2x'></i>".html_safe, actual_situation_path(id: restaurant.id) %>
+  </td>
+</tr>
