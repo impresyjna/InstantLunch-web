@@ -11,7 +11,7 @@
     <!--Simple table example -->
     <div class="panel panel-danger">
       <div class="panel-heading">
-        <i class="fa fa-bar-chart-o fa-fw"></i>10 najczęściej zamawianych dań
+        <i class="fa fa-bar-chart-o fa-fw"></i>10 ostatnio zamówionych dań
       </div>
 
       <div class="panel-body">
@@ -22,14 +22,12 @@
                 <thead>
                 <tr>
                   <th>Nazwa</th>
-                  <th>Ile razy</th>
+                  <th>Cena</th>
+                  <th>Restauracja</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>3326</td>
-                  <td>10/21/2013</td>
-                </tr>
+                <%= render :partial => 'dashboard/order', :collection => @orders %>
                 </tbody>
               </table>
             </div>
@@ -48,8 +46,8 @@
   <div class="col-lg-4">
     <div class="panel panel-primary text-center no-boder">
       <div class="panel-body yellow">
-        <i class="fa fa-bar-chart-o fa-3x"></i>
-        <h3>20,741 </h3>
+        <i class="fa fa-spoon fa-3x"></i>
+        <h3><%= @this_day %></h3>
       </div>
       <div class="panel-footer">
                             <span class="panel-eyecandy-title">Liczba zamówień dzisiaj
@@ -58,8 +56,8 @@
     </div>
     <div class="panel panel-primary text-center no-boder">
       <div class="panel-body blue">
-        <i class="fa fa-pencil-square-o fa-3x"></i>
-        <h3>2,060 </h3>
+        <i class="fa fa-cutlery fa-3x"></i>
+        <h3><%= @this_month %></h3>
       </div>
       <div class="panel-footer">
                             <span class="panel-eyecandy-title">Liczba zamówień ostatniego miesiąca
@@ -72,7 +70,7 @@
         <h3><%= @favorites %></h3>
       </div>
       <div class="panel-footer">
-                            <span class="panel-eyecandy-title">Użytkownicy którzy polubili
+                            <span class="panel-eyecandy-title">Użytkownicy którzy polubili twoje restauracje
                             </span>
       </div>
     </div>

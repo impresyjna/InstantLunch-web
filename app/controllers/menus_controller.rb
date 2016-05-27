@@ -8,6 +8,7 @@ class MenusController < FrontController
   def show
     @menu = Menu.find(params[:id])
     @menu_dishes = @menu.menu_dishes.order(:dish_category_id)
+    @menu_dishes = @menu_dishes.where(dish_id: Dish.where(active: true).pluck(:id))
     @minimum_dish_category = @menu_dishes.minimum(:dish_category_id)
     if @minimum_dish_category.blank?
       @minimum_dish_category = 0
