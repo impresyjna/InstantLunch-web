@@ -1,4 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <!-- Page Header -->
+  <div class="col-lg-12">
+    <h1 class="page-header">Przedmioty zamówienia </h1>
+  </div>
+  <!--End Page Header -->
+</div>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Nazwa potrawy</th>
+          <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= render @order_items %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Ilość dań: <%= @order_items.count %></h3>
+    <h3>Razem: <%= number_to_currency(@order.total_price, unit: "zł", separator: ",", delimiter: "", format: "%n %u") %></h3>
+  </div>
+</div>

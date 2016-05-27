@@ -4,10 +4,8 @@ class OrdersController < FrontController
   end
 
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @order }
-    end
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 
   def edit

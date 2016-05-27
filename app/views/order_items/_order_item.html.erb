@@ -1,0 +1,4 @@
+<tr>
+  <td><%= order_item.dish.name %></td>
+  <td><%= number_to_currency(order_item.price, unit: "zł", separator: ",", delimiter: "", format: "%n %u") %></td>
+</tr>
