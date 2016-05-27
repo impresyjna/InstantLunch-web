@@ -11,14 +11,10 @@ class DishesController < FrontController
   end
 
   def new
-    @dishes_categories = DishCategory.where(restaurant_owner_id: current_user.actable_id)
-    @dishes_categories = @dishes_categories.pluck(:name, :id)
     @dish = Dish.new
   end
 
   def edit
-    @dishes_categories = DishCategory.where(restaurant_owner_id: current_user.actable_id)
-    @dishes_categories = @dishes_categories.pluck(:name, :id)
     @dish = Dish.find(params[:id])
   end
 
@@ -63,6 +59,6 @@ class DishesController < FrontController
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :price, :description, :dish_category_id)
+    params.require(:dish).permit(:name, :price, :description)
   end
 end

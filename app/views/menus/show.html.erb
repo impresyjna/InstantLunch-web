@@ -1,4 +1,96 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <!-- Page Header -->
+  <div class="col-lg-12">
+    <h1 class="page-header">Menu <%= @menu.restaurant.name %></h1>
+  </div>
+  <!--End Page Header -->
+</div>
 
-<%= link_to 'Edit', edit_menu_path(@menu) %> |
-<%= link_to 'Back', menus_path %>
+  <% @actual_category = @minimum_dish_category %>
+  <% if @actual_category != 0 %>
+  <div class="row">
+    <!-- Page Header -->
+    <div class="col-lg-12">
+      <h4 class="page-header"><%= DishCategory.find(@actual_category).name %></h4>
+    </div>
+    <!--End Page Header -->
+  </div>
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Cena</th>
+          <th>Opis</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @menu_dishes.each do |menu_dish| %>
+            <% if menu_dish.dish_category_id != @actual_category %>
+              <% @actual_category = menu_dish.dish_category_id %>
+                </tbody>
+                </table>
+                </div>
+                </div>
+                <div class="row">
+                  <!-- Page Header -->
+                  <div class="col-lg-12">
+                    <h4 class="page-header"><%= DishCategory.find(@actual_category).name %></h4>
+                  </div>
+                  <!--End Page Header -->
+                </div>
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                      <tr>
+                        <th>Nazwa</th>
+                        <th>Cena</th>
+                        <th>Opis</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <%= render 'menus/dish_in_categories', menu_dish: menu_dish %>
+            <% else %>
+                <%= render 'menus/dish_in_categories', menu_dish: menu_dish %>
+            <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <!-- Page Header -->
+  <div class="col-lg-12">
+    <h4 class="page-header">Dodaj danie</h4>
+  </div>
+  <!--End Page Header -->
+</div>
+<div class="col-md-12">
+  <div class="row">
+    <%= form_for MenuDish.new, :url => add_dish_to_menu_path, :html => {:method => :post} do |f| %>
+        <div class="row">
+          <div class="col-sm-3">
+            <%= f.select :dish_id, options_for_select(@dishes), {:include_blank => "Danie"}, {:class => "form-control"} %>
+          </div>
+          <div class="col-sm-3">
+            <%= f.select :dish_category_id, options_for_select(@dishes_categories), {:include_blank => "Kategoria"}, {:class => "form-control"} %>
+          </div>
+          <div class="col-sm-3">
+            <%= f.number_field :promotion, :class => 'form-control', :step => 0.01, :placeholder => "Cena promocyjna" %>
+            <%= f.hidden_field :menu_id, :value => @menu.id %>
+          </div>
+          <div class="col-sm-3">
+            <%= f.submit "Dodaj", class: 'btn btn-danger btn-lg btn-block' %>
+          </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+

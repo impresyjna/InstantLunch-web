@@ -1,3 +1,3 @@
 class Dish < ActiveRecord::Base
-  belongs_to :dish_category
+  has_many :menu_dishes
 end

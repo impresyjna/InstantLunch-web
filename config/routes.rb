@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboard#index'
   post 'register_owner' => 'restaurant_owners#create'
   get 'generate_qr_code' => 'tables#generate_qr_code'
+  post 'add_dish_to_menu' => 'menus#add_dish'
 
   resources :users
   resources :restaurants
@@ -36,4 +37,5 @@ Rails.application.routes.draw do
   resources :orders
   resources :order_statuses
   resources :dishes
+  resources :menu_dishes
 end
