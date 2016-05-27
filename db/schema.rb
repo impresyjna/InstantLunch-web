@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527155213) do
+ActiveRecord::Schema.define(version: 20160527201808) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -91,14 +91,16 @@ ActiveRecord::Schema.define(version: 20160527155213) do
   add_index "order_statuses", ["restaurant_owner_id"], name: "index_order_statuses_on_restaurant_owner_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.float    "total_price", limit: 24
-    t.integer  "customer_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "table_id",    limit: 4
+    t.float    "total_price",     limit: 24
+    t.integer  "customer_id",     limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "table_id",        limit: 4
+    t.integer  "order_status_id", limit: 4
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
   add_index "orders", ["table_id"], name: "index_orders_on_table_id", using: :btree
 
   create_table "restaurant_owners", force: :cascade do |t|
@@ -182,6 +184,7 @@ ActiveRecord::Schema.define(version: 20160527155213) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_statuses", "restaurant_owners"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "tables"
   add_foreign_key "restaurants", "restaurant_owners"
   add_foreign_key "tables", "restaurants"

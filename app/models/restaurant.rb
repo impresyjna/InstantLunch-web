@@ -3,4 +3,5 @@ class Restaurant < ActiveRecord::Base
   has_many :waiters
   has_one :menu
   has_many :tables
+
 end
