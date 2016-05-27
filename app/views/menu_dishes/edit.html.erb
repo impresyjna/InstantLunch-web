@@ -1,6 +1,23 @@
-<h1>Editing Menu Dish</h1>
+<div class="row">
+  <!-- Page Header -->
+  <div class="col-lg-12">
+    <h1 class="page-header">Edycja <%= @menu_dish.dish.name %></h1>
+  </div>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @menu_dish %> |
-<%= link_to 'Back', menu_dishes_path %>
+<div class="row">
+  <%= form_for @menu_dish do |f| %>
+      <div class="row">
+        <div class="col-sm-5">
+          <%= f.select :dish_category_id, options_for_select(@dishes_categories, @menu_dish.dish_category_id), {:include_blank => "Kategoria"}, {:class => "form-control"} %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.number_field :promotion, :class => 'form-control', :step => 0.01, :placeholder => "Cena promocyjna" %>
+          <%= f.hidden_field :menu_id, :value => @menu_dish.menu_id %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.submit "Zapisz", class: 'btn btn-danger btn-lg btn-block' %>
+        </div>
+  <% end %>
+  </div>
+</div>

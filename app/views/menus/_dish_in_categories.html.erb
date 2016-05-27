@@ -1,11 +1,10 @@
 <tr>
   <td><%= menu_dish.dish.name %></td>
-  <td><%= menu_dish.dish.price %></td>
+  <td><%= number_to_currency(menu_dish.dish.price, unit: "zł", separator: ",", delimiter: "", format: "%n %u") %></td>
   <td><%= menu_dish.dish.description %></td>
   <td class="table_buttons">
-    <%= link_to "<i class='fa fa-eye fa-2x'></i>".html_safe, menu_dish %>
     <%= link_to "<i class='fa fa-pencil fa-2x'></i>".html_safe, edit_menu_dish_path(menu_dish) %>
     <%= link_to "<i class='fa fa-trash fa-2x'></i>".html_safe, menu_dish, method: :delete,
-                data: { confirm: "Czy jesteś pewien, że chcesz usunąć kelnera?" } %>
+                data: { confirm: "Czy jesteś pewien, że chcesz usunąć danie z menu?" } %>
   </td>
 </tr>
