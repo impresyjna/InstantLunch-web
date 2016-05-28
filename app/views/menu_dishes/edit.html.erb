@@ -11,7 +11,10 @@
         <div class="col-sm-5">
           <%= f.select :dish_category_id, options_for_select(@dishes_categories, @menu_dish.dish_category_id), {:include_blank => "Kategoria"}, {:class => "form-control"} %>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-2">
+          <h4>Obecna cena: <%= number_to_currency(@menu_dish.dish.price, unit: "zł", separator: ",", delimiter: "", format: "%n %u") %></h4>
+        </div>
+          <div class="col-sm-3">
           <%= f.number_field :promotion, :class => 'form-control', :step => 0.01, :placeholder => "Cena promocyjna" %>
           <%= f.hidden_field :menu_id, :value => @menu_dish.menu_id %>
         </div>
