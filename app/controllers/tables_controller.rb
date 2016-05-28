@@ -42,6 +42,8 @@ class TablesController < FrontController
   def actual_situation
     @restaurant = Restaurant.find(params[:id])
     @tables = @restaurant.tables
+    @order_statuses = OrderStatus.where(restaurant_owner_id: @restaurant.restaurant_owner_id)
+    @order_statuses = @order_statuses.where(visible: true).pluck(:id)
   end
 
   def destroy

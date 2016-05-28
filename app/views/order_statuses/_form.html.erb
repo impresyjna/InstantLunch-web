@@ -2,7 +2,12 @@
   <%= form_for @order_status do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
+
+
       <%= f.text_field :name, class: 'form-control', :required => true, :placeholder => "Nazwa" %>
+
+      <%= f.label :visible, "Widoczny na podglądzie sali" %>
+      <%= f.check_box :visible%>
 
       <%= f.submit "Zapisz", :class => "btn btn-danger btn-lg btn-block" %>
 

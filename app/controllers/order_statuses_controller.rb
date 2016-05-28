@@ -44,6 +44,6 @@ class OrderStatusesController < FrontController
   private
 
   def order_status_params
-    params.require(:order_status).permit(:name)
+    params.require(:order_status).permit(:name, :visible)
   end
 end

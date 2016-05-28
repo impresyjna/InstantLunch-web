@@ -23,7 +23,7 @@
         <div class="panel panel-danger">
           <div class="panel-heading">Stolik nr <%= table.number %></div>
           <div class="panel-body">
-            <% table.orders.each do |order| %>
+            <% table.orders.where(order_status_id: @order_statuses).each do |order| %>
                 <div class="panel panel-default">
                   <div class="panel-heading">Zamówienie nr <%= order.id %>,
                     stan: <%= order.order_status.name %> <%= link_to "Zmień stan", edit_order_path(order), class: "btn-danger btn-left" %></div>

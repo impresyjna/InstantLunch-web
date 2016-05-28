@@ -1,5 +1,12 @@
 <tr>
   <td><%= order_status.name %></td>
+  <td>
+    <% if order_status.visible %>
+        <img src="http://www.vi-decals.com/ocart/image/correct.png" width="25" height="25">
+    <% else %>
+        <img src="http://www.ratedartisan.com/images/delete1.png" width="25" height="25">
+    <% end %>
+  </td>
   <td class="table_buttons">
     <%= link_to "<i class='fa fa-pencil fa-2x'></i>".html_safe, edit_order_status_path(order_status) %>
   </td>
