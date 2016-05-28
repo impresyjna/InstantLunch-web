@@ -6,6 +6,8 @@ class WaitersController < FrontController
 
   def show
     @waiter = Waiter.find(params[:id])
+    @restaurants = @restaurant_owner.restaurants.where(open:true)
+    @restaurants = @restaurants.pluck(:name, :id)
   end
 
   def new
