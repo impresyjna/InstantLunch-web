@@ -1,4 +1,6 @@
 class OrdersController < FrontController
+  layout false, only: [:edit]
+
   def index
     @orders = Order.where(table_id: Table.where(restaurant_id: Restaurant.where(restaurant_owner_id: current_user.actable.id).pluck(:id)).pluck(:id))
   end
@@ -9,25 +11,24 @@ class OrdersController < FrontController
   end
 
   def edit
+    @order = Order.find(params[:id])
+    @order_statuses = @order.table.restaurant.restaurant_owner.order_statuses.pluck(:name, :id)
   end
 
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    @order = Order.find(params[:id])
+    @restaurant = @order.table.restaurant
+    if @order.update_attributes(order_params)
+      redirect_to actual_situation_path(id: @restaurant.id)
+    else
+      render 'edit'
     end
   end
 
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params[:order]
-    end
+  def order_params
+    params.require(:order).permit(:order_status_id)
+  end
 end

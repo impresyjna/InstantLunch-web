@@ -2301,6 +2301,13 @@ Author: http://binarytheme.com
   background-color: #FF3F59;
 }
 
+.btn-left {
+  display: flex;
+  float: right;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .fa-eye {
   color: #2c3e50;
 }

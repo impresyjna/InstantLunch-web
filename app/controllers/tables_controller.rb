@@ -1,5 +1,5 @@
 class TablesController < FrontController
-  layout false, only: [:generate_qr_code]
+  layout false, only: [:generate_qr_code, :actual_situation]
   def index
     @restaurant_owner = RestaurantOwner.find(current_user.actable_id)
     @tables = Table.where(restaurant_id: (@restaurant_owner.restaurants.pluck(:id)))
@@ -40,7 +40,8 @@ class TablesController < FrontController
   end
 
   def actual_situation
-
+    @restaurant = Restaurant.find(params[:id])
+    @tables = @restaurant.tables
   end
 
   def destroy
