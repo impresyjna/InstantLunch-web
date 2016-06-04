@@ -3,7 +3,11 @@
   <td><%= number_to_currency(order.total_price, unit: "zł", separator: ",", delimiter: "", format: "%n %u") %></td>
   <td><%= order.created_at.strftime("%F") %></td>
   <td><%= order.order_status.name %></td>
-  <td><%= ((order.updated_at-order.created_at).to_i.abs)/60 %> min</td>
+  <td>
+    <% if order.order_status.visible %>
+        <%= ((Time.now-order.updated_at).to_i.abs)/60 %> min
+    <% end %>
+  </td>
   <td class="table_buttons">
     <%= link_to "<i class='fa fa-eye fa-2x'></i>".html_safe, order %>
   </td>

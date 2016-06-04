@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < ApplicationController
+  respond_to :json
+  before_action :authenticate_with_token!, only: [:destroy, :update]
 
   def create
     user_password = params[:session][:password]
