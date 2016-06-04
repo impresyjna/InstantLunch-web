@@ -19,5 +19,4 @@ class Api::V1::RestaurantsController < ApplicationController
     end
   end
 
-
 end

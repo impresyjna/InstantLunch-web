@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527220942) do
+ActiveRecord::Schema.define(version: 20160604154553) do
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -129,10 +129,11 @@ ActiveRecord::Schema.define(version: 20160527220942) do
 
   create_table "tables", force: :cascade do |t|
     t.string   "QR_code",       limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "restaurant_id", limit: 4
     t.integer  "number",        limit: 4
+    t.boolean  "call",          limit: 1,   default: false
   end
 
   add_index "tables", ["restaurant_id"], name: "index_tables_on_restaurant_id", using: :btree

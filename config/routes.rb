@@ -21,7 +21,17 @@ Rails.application.routes.draw do
       #dish_categories
       resources :dish_categories, :only => [:index]
 
+      #menu
+      get '/menus/restaurant_menu', to: 'menus#restaurant_menu'
 
+      #order
+      resources :orders, :only => [:show, :create]
+
+      #favorite_restaurant
+      resources :favorite_restaurants, :only => [:create]
+
+      #tables
+      post '/tables/waiter_call', to: 'tables#waiter_call'
       devise_for :users
     end
   end

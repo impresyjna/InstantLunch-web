@@ -6,4 +6,6 @@ class Order < ActiveRecord::Base
 
   scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
   scope :this_day, -> { where(created_at: Time.now.beginning_of_day..Time.now.end_of_day) }
+
+  accepts_nested_attributes_for :order_items
 end

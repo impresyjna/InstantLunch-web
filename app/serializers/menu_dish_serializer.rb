@@ -1,3 +1,3 @@
 class MenuDishSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :dish, :promotion
 end
