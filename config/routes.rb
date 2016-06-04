@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :orders, :only => [:show, :create]
 
       #favorite_restaurant
+      get 'favorite_restaurants/promotions', to: 'favorite_restaurants#promotions'
       resources :favorite_restaurants, :only => [:create]
 
       #tables

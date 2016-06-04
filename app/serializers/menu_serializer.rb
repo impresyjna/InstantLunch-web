@@ -1,17 +1,11 @@
 class MenuSerializer < ActiveModel::Serializer
-  attributes :id, :menu_dishes
+  attributes :menu
 
-  def as_json(*args)
-    hash = super(*args)
-
-    hash[:menu_dishes] = {
-        menu_dishes: ActiveModel::ArraySerializer.new(
-            object.menu_dishes,
-            each_serializer: MenuDishSerializer
-        ).as_json
+  def menu
+    {
+        restaurant: object.restaurant.name,
+        menu_dishes: object.menu_dishes.as_json
     }
-
-    hash
   end
 
 end
