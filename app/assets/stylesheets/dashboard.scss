@@ -2379,6 +2379,12 @@ table.qr-code td.white {
   width: auto;
 }
 
+.fa-exclamation {
+  float: right;
+  width: auto;
+  display: inline-block;
+}
+
 @media print {
   table.qr-code {
     border-width: 0;

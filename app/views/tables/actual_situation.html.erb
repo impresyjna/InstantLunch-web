@@ -14,14 +14,22 @@
   <div class="row">
     <!-- Page Header -->
     <div class="col-lg-12">
-      <h1 class="page-header">Zamówienia w <%= @restaurant.name %> <%= link_to logout_path, method: "delete", class: "btn-left" do%><i class="fa fa-sign-out fa-fw"></i> <% end %></h1>
+      <h1 class="page-header">Zamówienia
+        w <%= @restaurant.name %> <%= link_to logout_path, method: "delete", class: "btn-left" do %>
+            <i class="fa fa-sign-out fa-fw"></i>
+        <% end %></h1>
     </div>
     <!--End Page Header -->
   </div>
   <% @tables.each do |table| %>
       <div class="col-md-4 table_actual">
         <div class="panel panel-danger">
-          <div class="panel-heading">Stolik nr <%= table.number %></div>
+          <div class="panel-heading">
+            Stolik nr <%= table.number %>
+            <% if table.call %>
+                <i class="fa fa-exclamation fa-3x" aria-hidden="true"></i>
+            <% end %>
+          </div>
           <div class="panel-body">
             <% table.orders.where(order_status_id: @order_statuses).each do |order| %>
                 <div class="panel panel-default">
