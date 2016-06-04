@@ -15,8 +15,11 @@ Rails.application.routes.draw do
       resources :customers, :only => [:create, :update]
 
       #restaurants
+      get '/restaurants/favorite', to: 'restaurants#favorite'
       resources :restaurants, :only => [:index]
 
+      #dish_categories
+      resources :dish_categories, :only => [:index]
 
 
       devise_for :users
